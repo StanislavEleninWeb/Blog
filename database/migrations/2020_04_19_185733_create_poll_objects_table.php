@@ -15,7 +15,14 @@ class CreatePollObjectsTable extends Migration
     {
         Schema::create('poll_objects', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('poll_id')->index();
+            $table->string('title');
+            $table->tinyInteger('active')->index();
+            $table->tinyInteger('sortorder')->index();
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->index(['poll_id', 'active', 'sortorder']);
         });
     }
 
