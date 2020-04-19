@@ -16,10 +16,14 @@ class CreatePollsTable extends Migration
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
+            $table->text('description');
             $table->tinyInteger('active');
             $table->timestamp('publish_at');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->index(['active', 'publish_at']);
         });
     }
 

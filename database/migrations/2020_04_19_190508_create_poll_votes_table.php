@@ -15,7 +15,11 @@ class CreatePollVotesTable extends Migration
     {
         Schema::create('poll_votes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('poll_object_id')->index();
+            $table->ipAddress('ip');
             $table->timestamps();
+
+            $table->unique(['poll_object_id', 'ip']);
         });
     }
 
