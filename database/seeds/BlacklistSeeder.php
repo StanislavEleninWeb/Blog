@@ -1159,7 +1159,9 @@ class BlacklistSeeder extends Seeder {
             
             if(!$result){
                 DB::table('blacklists')->insert([
-                    'word' => $word
+                    'word' => $word,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ]);
             }
         }
