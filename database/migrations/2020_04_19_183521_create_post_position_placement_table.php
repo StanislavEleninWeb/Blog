@@ -15,6 +15,8 @@ class CreatePostPositionPlacementTable extends Migration
     {
         Schema::create('post_position_placement', function (Blueprint $table) {
             $table->id();
+            $table->unsignedMediumInteger('position_id')->index();
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
         });
     }

@@ -14,8 +14,10 @@ class CreateImagesTagsTable extends Migration
     public function up()
     {
         Schema::create('images_tags', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('image_id');
+            $table->unsignedBigInteger('tag_id');
+            
+            $table->primary(['image_id', 'tag_id']);
         });
     }
 

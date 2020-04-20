@@ -15,6 +15,10 @@ class CreatePostsImagesTable extends Migration
     {
         Schema::create('posts_images', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('post_id')->index();
+            $table->unsignedBigInteger('image_id')->index();
+            $table->string('title');
+            $table->string('alt');
             $table->timestamps();
         });
     }

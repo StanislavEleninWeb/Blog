@@ -15,6 +15,8 @@ class CreateConnectedPostsTable extends Migration
     {
         Schema::create('connected_posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('post_id')->index();
+            $table->unsignedBigInteger('connected_id')->index();
             $table->timestamps();
         });
     }

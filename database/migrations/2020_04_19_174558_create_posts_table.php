@@ -17,12 +17,14 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('author_id');
-            $table->unsignedBigInteger('category_id')->index();
+            $table->unsignedMediumInteger('category_id')->index();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('sub_title');
-            $table->text('content');
-            $table->text('embed');
+            $table->string('sub_title')->nullable();
+            $table->text('content')->nullable();
+            $table->text('embed')->nullable();
+            $table->tinyInteger('hide_comments')->default(0);
+            $table->mediumInteger('view')->default(0);
             $table->enum('status', ['private', 'protected', 'public'])->index();
             $table->timestamp('publish_at')->index();
             $table->softDeletes();

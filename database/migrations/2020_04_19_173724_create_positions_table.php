@@ -14,10 +14,10 @@ class CreatePositionsTable extends Migration
     public function up()
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('page_id')->index();
+            $table->mediumIncrements('id');
+            $table->unsignedMediumInteger('page_id')->index();
             $table->string('title');
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

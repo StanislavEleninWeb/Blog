@@ -15,15 +15,15 @@ class CreatePollsTable extends Migration
     {
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
+            $table->unsignedMediumInteger('position_id')->index();
             $table->string('title');
             $table->string('slug');
             $table->text('description');
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->index();
             $table->timestamp('publish_at');
+            $table->timestamp('stop_at');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->index(['active', 'publish_at']);
         });
     }
 

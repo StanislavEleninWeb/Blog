@@ -19,6 +19,8 @@ class CreateCommentVotesTable extends Migration
             $table->tinyInteger('like');
             $table->ipAddress('ip');
             $table->timestamps();
+            
+            $table->unique(['comment_id', 'ip']);
         });
     }
 
