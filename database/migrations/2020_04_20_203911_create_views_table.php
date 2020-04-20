@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePollsTable extends Migration
+class CreateViewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreatePollsTable extends Migration
      */
     public function up()
     {
-        Schema::create('polls', function (Blueprint $table) {
-            $table->id();
+        Schema::create('views', function (Blueprint $table) {
+            $table->mediumIncrements('id');
             $table->unsignedMediumInteger('page_id')->index();
             $table->string('title');
-            $table->string('slug');
             $table->text('description');
-            $table->tinyInteger('active')->index();
-            $table->timestamp('publish_at')->nullable();
-            $table->timestamp('publish_until')->nullable();
+            $table->tinyInteger('active')->default(0)->index();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +31,6 @@ class CreatePollsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('polls');
+        Schema::dropIfExists('views');
     }
 }
