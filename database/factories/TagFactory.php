@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Tag::class, function (Faker $faker) {
     return [
         'title' => $faker->word(),
-        'slug' => $faker->slug(1),
+        'slug' => $faker->unique()->slug(1),
     ];
 });
