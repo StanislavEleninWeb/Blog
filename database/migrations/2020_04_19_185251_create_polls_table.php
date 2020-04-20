@@ -20,8 +20,8 @@ class CreatePollsTable extends Migration
             $table->string('slug');
             $table->text('description');
             $table->tinyInteger('active')->index();
-            $table->timestamp('publish_at');
-            $table->timestamp('stop_at');
+            $table->timestamp('publish_at')->nullable();
+            $table->timestamp('publish_until')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
