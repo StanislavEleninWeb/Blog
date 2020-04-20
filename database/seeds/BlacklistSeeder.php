@@ -1155,7 +1155,7 @@ class BlacklistSeeder extends Seeder {
         foreach ($this->blacklist as $word) {
             $word = strtolower($word);
             
-            $result = DB::table('blacklists')->select('*')->where('word', $wird)->first();
+            $result = DB::table('blacklists')->select('*')->where('word', $word)->first();
             
             if(!$result){
                 DB::table('blacklists')->insert([
