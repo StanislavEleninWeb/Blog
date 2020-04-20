@@ -7,6 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Role::class, function (Faker $faker) {
     return [
-        //
+        'title' => $faker->word,
+        'slug' => $faker->unique()->slug,
+        'description' => $faker->paragraph,
     ];
 });

@@ -11,6 +11,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        
         DB::table('users')->insert([
             'name' => 'Stanislav Elenin',
             'email' => 'stanislaveleninweb@gmail.com',
@@ -21,7 +22,8 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
+                
         factory(App\User::class, 10)->create();
+        
     }
 }
