@@ -15,6 +15,10 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('page_id')->index();
+            $table->string('title');
+            $table->tinyInteger('active');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

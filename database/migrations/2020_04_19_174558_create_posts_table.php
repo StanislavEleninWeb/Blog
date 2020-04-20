@@ -15,6 +15,17 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('category_id')->index();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('sub_title');
+            $table->text('content');
+            $table->text('embed');
+            $table->enum('status', ['private', 'protected', 'public'])->index();
+            $table->timestamp('publish_at')->index();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

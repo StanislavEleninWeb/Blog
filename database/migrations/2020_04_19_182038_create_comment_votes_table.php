@@ -15,6 +15,9 @@ class CreateCommentVotesTable extends Migration
     {
         Schema::create('comment_votes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('comment_id')->index();
+            $table->tinyInteger('like');
+            $table->ipAddress('ip');
             $table->timestamps();
         });
     }
