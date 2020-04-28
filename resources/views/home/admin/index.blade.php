@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')Demo Title @endsection
+@section('description')Demo Description @endsection
+@section('keywords')Demo keywords @endsection
+
+@section('nav')
+	@include('welcome')
+@endsection
+
 @section('content')
 
 <x-alerts.alert type="danger" message="Alert message" class="mt-4">

@@ -45,5 +45,9 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany('App\Role', 'users_roles');
     }
+
+    public function isDeveloper(){
+        return false;
+    }
     
 }

@@ -17,7 +17,9 @@ Auth::routes();
 
 Route::get('/', 'HomeController')->name('home');
 
-Route::middleware('web')->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+Route::view('/welcome', 'welcome');
+
+Route::middleware('admin.grp')->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
 	Route::get('/', 'AdminController');
 
@@ -26,3 +28,13 @@ Route::middleware('web')->namespace('Admin')->prefix('admin')->name('admin.')->g
 	Route::resource('/role', 'RoleController');
 
 });
+
+//// Compose User Posts route
+// Route::get('/users/{user}/posts/{post:slug}', function (User $user, Post $post) {
+//     return $post;
+// });
+
+//// Custom Error page
+// Route::fallback(function(){
+// 	return view('error.404');
+// });
