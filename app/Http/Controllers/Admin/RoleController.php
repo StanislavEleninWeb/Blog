@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+
+    public function __construct(){
+        $this->authorizeResource(Role::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return 'role.admin.index';
+        return 'Role Controller index';
     }
 
     /**
@@ -25,7 +31,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+            return 'Role Controller create';
     }
 
     /**
@@ -70,7 +76,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        return 'update';
     }
 
     /**

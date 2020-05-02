@@ -5,10 +5,18 @@ namespace App\Policies\Admin;
 use App\Role;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class RolePolicy
 {
     use HandlesAuthorization;
+
+    public function before($user, $ability)
+    {
+        if($user->isDeveloper()){
+           return true; 
+        }
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -18,7 +26,7 @@ class RolePolicy
      */
     public function viewAny(User $user)
     {
-        return false;
+        return true;
     }
 
     /**
@@ -30,6 +38,7 @@ class RolePolicy
      */
     public function view(User $user, Role $role)
     {
+        echo 'RolePolicy';
         return true;
     }
 
@@ -41,7 +50,7 @@ class RolePolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -53,7 +62,7 @@ class RolePolicy
      */
     public function update(User $user, Role $role)
     {
-        //
+        return true;
     }
 
     /**
@@ -92,7 +101,4 @@ class RolePolicy
         //
     }
 
-    public function before($user, $ability){
-        return $user->isDeveloper();
-    }
 }
