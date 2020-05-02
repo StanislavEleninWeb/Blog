@@ -23,9 +23,11 @@ Route::middleware('admin.grp')->namespace('Admin')->prefix('admin')->name('admin
 
 	Route::get('/', 'AdminController');
 
-	Route::resource('/category', 'CategoryController');
+	Route::resource('/user', 'UserController');
 
 	Route::resource('/role', 'RoleController');
+
+	Route::resource('/category', 'CategoryController');
 
 });
 

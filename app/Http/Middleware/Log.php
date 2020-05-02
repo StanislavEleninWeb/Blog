@@ -17,7 +17,7 @@ class Log
     {
         $response = $next($request);
 
-        echo 'Log Middleware';
+        // Log the information
 
         return $response;
     }
