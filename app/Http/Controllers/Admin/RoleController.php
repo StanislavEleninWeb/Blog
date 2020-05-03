@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Role;
+use App\Category;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -23,7 +24,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return 'Role Controller index';
+        $data['categories'] = Category::all();
+
+        $data['roles'] = Role::all();
+
+        return view('role.admin.index')->with($data);
     }
 
     /**
@@ -33,7 +38,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-            return 'Role Controller create';
+        return view('role.admin.create');
     }
 
     /**
@@ -55,7 +60,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('role.admin.show')->with(['role' => $role]);
     }
 
     /**
@@ -66,7 +71,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('role.admin.edit');
     }
 
     /**

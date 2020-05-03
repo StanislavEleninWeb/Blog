@@ -38,7 +38,6 @@ class RolePolicy
      */
     public function view(User $user, Role $role)
     {
-        echo 'RolePolicy';
         return true;
     }
 
@@ -50,7 +49,7 @@ class RolePolicy
      */
     public function create(User $user)
     {
-        return false;
+        return true;
     }
 
     /**
