@@ -16,7 +16,19 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Model' => 'App\Policies\ModelPolicy',
         'App\Role' => 'App\Policies\Admin\RolePolicy',
         'App\User' => 'App\Policies\Admin\UserPolicy',
-        'App\User' => 'App\Policies\Admin\CategoryPolicy',
+        'App\Category' => 'App\Policies\Admin\CategoryPolicy',
+    ];
+
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $gates = [
+        // 'see-config' => 'App\Gates\ConfigGate',
+        // 'publish-article' => 'App\Gates\ArticleGate@publish',
+        // 'approve-article' => 'App\Gates\ArticleGate@approve',
+        'viewAny-admin' => 'App\Policies\Gates\Admin\AdminPolicy@viewAny',
     ];
 
     /**
@@ -27,7 +39,18 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        $this->registerGates();
+    }
 
-        //
+    /**
+     * Register the application's gates.
+     *
+     * @return void
+     */
+    public function registerGates()
+    {
+        foreach ($this->gates as $key => $value) {
+            Gate::define($key, $value);
+        }
     }
 }
