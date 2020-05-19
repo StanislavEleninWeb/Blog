@@ -22,6 +22,13 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        
+        DB::table('users_roles')->insert([
+            'user_id' => 1,
+            'role_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
                 
         factory(App\User::class, 10)->create();
         
