@@ -47,6 +47,28 @@ class User extends Authenticatable
     }
 
     public function isDeveloper(){
+
+        return $this->hasRoles('developer');
+    }
+
+    public function hasRoles($roles){
+
+        if(is_array($roles)){
+            foreach($this->roles as $role){
+                foreach($roles as $itr){
+                    if(strtolower($itr) == $role->slug){
+                        return true;
+                    }
+                }
+            }
+        } else {
+            foreach($this->roles as $role){                
+                if(strtolower($roles) == $role->slug){
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
     

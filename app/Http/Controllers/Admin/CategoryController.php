@@ -22,7 +22,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return 'ASD';
+        $data = [];
+
+        $data['categories'] = Category::all();
+
+        return view('category.admin.index')->with($data);
     }
 
     /**
