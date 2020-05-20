@@ -1,17 +1,46 @@
-@extends('layouts.app')
-
-@section('nav')
-	@include('nav.admin.index')
-@endsection
+@extends('layouts.admin')
 
 @section('content')
 
-<div class="container">
-	<div class="row">
-		<div class="col">
-			
-		</div>
-	</div>
+<div class="container mt-2">
+    <div class="row">
+        <div class="col">
+            <h3>Most Viewed</h3>
+
+            <table>
+                <thead>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Category</th>
+                <th>Published</th>
+                </thead>
+                
+                @foreach(mostViewed as itr)
+                <tr>
+                    <td></td>
+                </tr>
+                @endforeach
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col">
+            <h3>Recent Posts</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col">
+            <h3>Recent Comments</h3>
+        </div>
+    </div>
 </div>
 
 
