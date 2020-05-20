@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Role;
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreRole;
 
 class RoleController extends Controller
 {
@@ -24,7 +25,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::all();
+        $data = [];
 
         $data['roles'] = Role::all();
 
@@ -47,7 +48,7 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRole $request)
     {
         //
     }
