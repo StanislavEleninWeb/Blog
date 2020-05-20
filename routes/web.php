@@ -28,6 +28,12 @@ Route::middleware('admin.grp')->namespace('Admin')->prefix('admin')->name('admin
 	Route::resource('/role', 'RoleController');
 
 	Route::resource('/category', 'CategoryController');
+        
+        Route::resource('/post', 'PostController');
+        
+        Route::resource('/poll', 'PollController');
+        
+        Route::resource('/blacklist', 'BlacklistController');
 
 });
 

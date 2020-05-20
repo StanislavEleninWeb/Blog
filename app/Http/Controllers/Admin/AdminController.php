@@ -15,6 +15,12 @@ class AdminController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('home.admin.index');
+        $data = [];
+        
+        $data['mostViewed'] = [];
+        $data['recentPosts'] = [];
+        $data['recentComments'] = [];
+        
+        return view('home.admin.index')->with($data);
     }
 }

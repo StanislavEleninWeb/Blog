@@ -24,9 +24,7 @@
 						<td>{{ $role->id }}</td>
 						<td>{{ $role->title }}</td>
 						<td>
-							<a href="{{ route('admin.role.show', $role->id) }}" class="btn btn-sm btn-info">Show</a>
-							<a href="{{ route('admin.role.edit', $role->id) }}" class="btn btn-sm btn-warning">Edit</a>
-							<a href="{{ route('admin.role.destroy', $role->id) }}" class="btn btn-sm btn-danger">Delete</a>
+							<x-inputs.buttons.rud route="admin.role" :id="$role->id" />
 						</td>
 					</tr>
 					@endforeach

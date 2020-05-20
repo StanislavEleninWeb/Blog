@@ -17,6 +17,9 @@ class AuthServiceProvider extends ServiceProvider
         'App\Role' => 'App\Policies\Admin\RolePolicy',
         'App\User' => 'App\Policies\Admin\UserPolicy',
         'App\Category' => 'App\Policies\Admin\CategoryPolicy',
+        'App\Post' => 'App\Policies\Admin\PostPolicy',
+        'App\Poll' => 'App\Policies\Admin\PollPolicy',
+        'App\Blacklist' => 'App\Policies\Admin\BlacklistPolicy',
     ];
 
     /**
