@@ -30,4 +30,41 @@ class StoreRole extends FormRequest
             'description' => 'nullable|max:255'
         ];
     }
+    
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation() {
+        $this->merge([
+            'slug' => Str::slug($this->slug),
+        ]);
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages() {
+        return [
+            'title.required' => 'A title is required',
+            'slug.required' => 'A :attribute is required',
+            'body.required' => 'A message is required',
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes() {
+        return [
+            'email' => 'email address',
+            'slug' => 'SLUG',
+        ];
+    }
+
 }

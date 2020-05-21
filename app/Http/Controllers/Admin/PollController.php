@@ -3,21 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Role;
-use App\Category;
+use App\Poll;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\StoreRole;
 
-class RoleController extends Controller
+class PollController extends Controller
 {
-
-    public function __construct(){
-
-        $this->authorizeResource(Role::class);
-        
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -25,11 +15,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = [];
-
-        $data['roles'] = Role::all();
-
-        return view('role.admin.index')->with($data);
+        //
     }
 
     /**
@@ -39,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('role.admin.create');
+        //
     }
 
     /**
@@ -48,54 +34,52 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRole $request, Role $role)
+    public function store(Request $request)
     {
-        $role = Role::create($request->validated());
-        
-        return redirect()->route('admin.role.show', $role->id);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Poll  $poll
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Poll $poll)
     {
-        return view('role.admin.show')->with(['role' => $role]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Poll  $poll
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Poll $poll)
     {
-        return view('role.admin.edit');
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Role  $role
+     * @param  \App\Poll  $poll
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Poll $poll)
     {
-        return 'update';
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Poll  $poll
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Poll $poll)
     {
         //
     }
