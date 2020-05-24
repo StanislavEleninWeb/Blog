@@ -18,6 +18,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\UserDeactivated' => [
+            'App\Listeners\SendUserNotification',
+        ],
+        'App\Events\CategorySaved' => [
+            'App\Listeners\SendCategoryNotification',
+        ],
     ];
 
     /**
@@ -29,6 +35,11 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+//        Event::listen('event.name', function ($foo, $bar) {
+//            //
+//        });
+//        Event::listen('event.*', function ($eventName, array $data) {
+//            //
+//        });
     }
 }

@@ -29,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
 //            // $query->bindings
 //            // $query->time
 //        });
+        
+        \App\Category::observe(\App\Observers\CategoryObserver::class);
     }
 }

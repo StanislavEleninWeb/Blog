@@ -21,13 +21,13 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        
+    {        
         $data = [];
         
         $data['categories'] = Category::orderBy('id', 'DESC');
         
-        $data['parents'] = $data['categories']->where('parent_id', 0)->get();
+        $data['parents'] = clone($data['categories']);
+        $data['parents'] = $data['parents']->where('parent_id', 0)->get();
                 
         if(isset($request->title) && mb_strlen(trim($request->title)) > 2){
             $data['title'] = trim($request->title);

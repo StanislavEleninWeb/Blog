@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+//        event(new \App\Events\UserDeactivated(User::find(2)));
     }
 
     /**
