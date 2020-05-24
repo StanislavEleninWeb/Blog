@@ -45,6 +45,7 @@ class Kernel extends HttpKernel
 
         'admin.grp' => [
             'auth',
+            'verified',
             'admin',
             'log',
         ]

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController')->name('home');
 
@@ -26,6 +26,7 @@ Route::middleware('admin.grp')->namespace('Admin')->prefix('admin')->name('admin
 	Route::resource('/user', 'UserController');
 
 	Route::resource('/role', 'RoleController');
+        Route::patch('/role/{role}/restore', 'RoleController@restore')->name('role.restore');
 
 	Route::resource('/category', 'CategoryController');
         

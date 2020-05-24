@@ -14,7 +14,9 @@ class RoleController extends Controller
 
     public function __construct(){
 
-        $this->authorizeResource(Role::class);
+        $this->authorizeResource(Role::class, null, [
+            'except' => ['destroy'],
+        ]);
         
     }
 
@@ -27,7 +29,11 @@ class RoleController extends Controller
     {
         $data = [];
 
-        $data['roles'] = Role::all();
+        if (Auth::user()->isDeveloper()) {
+            $data['roles'] = Role::withTrashed()->get();
+        } else {
+            $data['roles'] = Role::all();
+        }
 
         return view('role.admin.index')->with($data);
     }
@@ -95,8 +101,36 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(int $id)
     {
-        //
+        $role = Role::withTrashed()->findOrFail($id);
+        
+        if($role->deleted_at == null){
+            $role->delete();
+        } else {
+            $this->authorize('forceDelete', $role);
+            $role->forceDelete();
+        }
+        
+        return back();
+    }
+    
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  \App\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(int $id)
+    {
+        $role = Role::withTrashed()->findOrFail($id);
+        
+        $this->authorize('restore', $role);
+        
+        $role->deleted_at = null;
+        
+        $role->update();
+        
+        return back();
     }
 }

@@ -6,26 +6,36 @@
         <div class="col">
 
             <!-- Search form for category -->
-            <form method="POST" action="#" class="form form-inline">
-                @csrf
-                @method('POST')
+            <form id="searchForm" method="GET" action="{{ route('admin.category.index') }}" class="form form-inline">
 
-                <div class="form-group">
+                <div class="form-group m-1">
                     <label for="title" class="sr-only">Title</label>
-                    <input type="text" name="title" class="form-control" placeholder="Category">
+                    <input id="title" type="text" name="title" class="form-control" placeholder="Category" @if(isset($title)) value="{{ $title }}" @endif>
+                </div>
+
+                <div class="form-group m-1">
+                    <label for="active" class="sr-only">Active</label>
+                    <select id="active" name="active" class="form-control">
+                        <option value="">All</option>
+                        <option value="1" @if(isset($active) && $active ==1) selected @endif>Active</option>
+                        <option value="0" @if(isset($active) && $active ==0) selected @endif>Deactivated</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="parent" class="sr-only">Parent</label>
                     <select name="parent" class="form-control">
-                        <option>Parent</option>
-                        @foreach($categories as $category)
-                        <option>{{ $category->title }}</option>
+                        <option value="">Parent</option>
+                        @foreach($parents as $itr)
+                        <option value="{{ $itr->id }}" @if(isset($parent) && $itr->id == $parent) selected @endif>{{ $itr->title }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <x-inputs.buttons.submit type="info" text="Search"/>
+                <div class="btn-group m-1">
+                    <x-inputs.buttons.submit type="info" text="Search"/>
+                    <a id="searchFormReset" href="#" class="btn btn-secondary">Reset</a>
+                </div>
 
             </form>
 
@@ -49,6 +59,8 @@
                 </tbody>
 
             </table>
+
+            {{ $categories->links() }}
 
         </div>
     </div>

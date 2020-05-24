@@ -31,8 +31,13 @@
         @yield('footer', View::make('footer.admin.index'))
 
         @section('javascript')
+        
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        
+        <!-- Custom Admin js -->
+        <script src="{{ mix('js/admin.js') }}" defer></script>
+
         @show
 
     </body>

@@ -71,7 +71,7 @@
 
             <div class="row">
                 <div class="col">
-                    <x-inputs.buttons.back url="{{ URL::previous() }}" type="secondary" text="Back"/>
+                    <x-inputs.buttons.back type="secondary" text="Back" url="{{ route('admin.role.index') }}" class="mt-2"/>
                 </div>
             </div>
 

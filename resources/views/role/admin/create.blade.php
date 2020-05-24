@@ -19,15 +19,16 @@
                     <input type="text" name="slug" class="form-control">
                     <x-errors.input name="slug"/>
                 </div>
-                
+
                 <div class="form-input mt-2">
                     <label for="description">Description</label>
                     <textarea name="description" class="form-control"></textarea>
                     <x-errors.input name="description"/>
                 </div>
-
-                <x-inputs.buttons.submit type="primary" text="Submit" class="mt-2"/>
-
+                <div class="form-group">
+                    <x-inputs.buttons.submit type="primary" text="Submit" class="mt-2"/>
+                    <x-inputs.buttons.back type="secondary" text="Back" url="{{ route('admin.role.index') }}" class="mt-2"/>
+                </div>
             </form>
         </div>
     </div>

@@ -17,11 +17,11 @@
                 </tbody>
 
                 @foreach($roles as $role)
-                <tr>
+                <tr @if($role->deleted_at == null) @else class="table-secondary" @endif>
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->title }}</td>
                     <td>
-                <x-inputs.buttons.rud route="admin.role" :id="$role->id" />
+                <x-inputs.buttons.rud route="admin.role" :id="$role->id" softDelete="{{ $role->deleted_at }}" />
                 </td>
                 </tr>
                 @endforeach

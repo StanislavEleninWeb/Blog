@@ -20,12 +20,32 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        
         $data = [];
-
-        $data['categories'] = Category::all();
-
+        
+        $data['categories'] = Category::orderBy('id', 'DESC');
+        
+        $data['parents'] = $data['categories']->where('parent_id', 0)->get();
+                
+        if(isset($request->title) && mb_strlen(trim($request->title)) > 2){
+            $data['title'] = trim($request->title);
+            $data['categories']->where('title', 'like', '%'.$data['title'].'%');
+        }
+        
+        if(isset($request->active) && is_numeric($request->active)){
+            $data['active'] = intval($request->active);
+            $data['categories']->where('active', $data['active']);
+        }
+        
+        if(isset($request->parent) && is_numeric($request->parent)){
+            $data['parent'] = intval($request->parent);
+            $data['categories']->where('parent_id', $data['parent']);
+        }
+        
+        $data['categories'] = $data['categories']->paginate(20)->withQueryString()->onEachSide(2);
+        
         return view('category.admin.index')->with($data);
     }
 
@@ -58,7 +78,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        Category::getHeaderCategories();
+        return view('category.admin.show')->with(['category' => $category]);
     }
 
     /**

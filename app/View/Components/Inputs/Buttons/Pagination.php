@@ -4,22 +4,16 @@ namespace App\View\Components\Inputs\Buttons;
 
 use Illuminate\View\Component;
 
-class Rud extends Component
+class Pagination extends Component
 {
-    public $id;
-    public $route;
-    public $softDelete;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($route, $id, $softDelete = null)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->route = $route;
-        $this->softDelete = $softDelete;
+        //
     }
 
     /**
@@ -29,6 +23,6 @@ class Rud extends Component
      */
     public function render()
     {
-        return view('components.inputs.buttons.rud');
+        return view('components.inputs.buttons.pagination');
     }
 }
