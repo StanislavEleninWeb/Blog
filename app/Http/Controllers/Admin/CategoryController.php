@@ -24,6 +24,8 @@ class CategoryController extends Controller
     {        
         $data = [];
         
+        dd(Category::getHeaderCategories());
+        
         $data['categories'] = Category::orderBy('id', 'DESC');
         
         $data['parents'] = clone($data['categories']);

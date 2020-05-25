@@ -25,6 +25,15 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendCategoryNotification',
         ],
     ];
+    
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        'App\Listeners\Subscribers\UserEventSubscriber',
+    ];
 
     /**
      * Register any events for your application.

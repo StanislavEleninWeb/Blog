@@ -26,7 +26,7 @@ class SendCategoryNotification
      */
     public function handle(CategorySaved $event)
     {
-        echo 'Listener';
-        dd($event->category);
+//        echo 'Listener';
+//        dd($event->category);
     }
 }

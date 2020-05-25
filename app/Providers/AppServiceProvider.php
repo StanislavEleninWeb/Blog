@@ -24,12 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        DB::listen(function ($query) {
-//            // $query->sql
-//            // $query->bindings
-//            // $query->time
-//        });
+        DB::listen(function ($query) {
+             echo PHP_EOL.$query->sql.PHP_EOL;
+//             $query->bindings
+//             $query->time
+        });
         
-        \App\Category::observe(\App\Observers\CategoryObserver::class);
+//        \App\Category::observe(\App\Observers\CategoryObserver::class);
     }
 }

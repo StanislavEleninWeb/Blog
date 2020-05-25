@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
-use App\Scopes\ActiveScope;
+//use App\Scopes\ActiveScope;
 use App\Events\CategorySaved;
 
 class Category extends Model {
@@ -53,7 +54,7 @@ class Category extends Model {
         if (Cache::has('headerCategories')) {
             $nav = json_decode(Cache::get('headerCategories'));
         } else {
-            $nav = static::with('children')->where('parent_id', 0)->where('active', 1)->where('header', 1)->get();
+            $nav = static::with(implode('.', array_fill(0, 3, 'children')))->parent()->active()->header()->get();
             Cache::put('headerCategories', json_encode($nav), 4800);
         }
 
@@ -69,7 +70,7 @@ class Category extends Model {
         if (Cache::has('footerCategories')) {
             $nav = json_decode(Cache::get('footerCategories'));
         } else {
-            $nav = static::with('children')->where('parent_id', 0)->where('active', 1)->where('footer', 1)->get();
+            $nav = static::with(implode('.', array_fill(0, 3, 'children')))->parent()->active()->footer()->get();
             Cache::put('footerCategories', json_encode($nav), 4800);
         }
 
@@ -91,7 +92,17 @@ class Category extends Model {
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeActive($query) {
+    public function scopeParent(Builder $query) {
+        return $query->where('parent_id', 0);
+    }
+
+    /**
+     * Local scope active
+     * 
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive(Builder $query) {
         return $query->where('active', 1);
     }
 
@@ -101,7 +112,7 @@ class Category extends Model {
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeHeader($query) {
+    public function scopeHeader(Builder $query) {
         return $query->where('header', 1);
     }
 
@@ -111,7 +122,7 @@ class Category extends Model {
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFooter($query) {
+    public function scopeFooter(Builder $query) {
         return $query->where('footer', 1);
     }
 
