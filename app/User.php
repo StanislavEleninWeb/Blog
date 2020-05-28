@@ -46,6 +46,15 @@ class User extends Authenticatable implements MustVerifyEmail {
 //        'saved' => UserSaved::class,
 //        'deleted' => UserDeleted::class,
     ];
+    
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+//        'seen_at', // DateTime / Carbon instance
+    ];
 
     /**
      * User Roles relation
