@@ -17,3 +17,29 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+//Route::get('/foo', function () {
+//    $exitCode = Artisan::call('email:send', [
+//        'user' => 1, '--queue' => 'default'
+//    ]);
+//
+//    //
+//});
+
+//Route::get('/foo', function () {
+//    Artisan::queue('email:send', [
+//        'user' => 1, '--queue' => 'default'
+//    ]);
+//
+//    //
+//});
+
+//Artisan::queue('email:send', [
+//    'user' => 1, '--queue' => 'default'
+//])->onConnection('redis')->onQueue('commands');
+
+//Route::get('/foo', function () {
+//    $exitCode = Artisan::call('email:send', [
+//        'user' => 1, '--id' => [5, 13]
+//    ]);
+//});
